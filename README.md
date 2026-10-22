@@ -1,72 +1,31 @@
-# 🔥 AI Resume Roaster
+# 🔥 AI Resume Roaster — PromptWars
 
-> Paste a job description + your resume → Claude analyzes, roasts, and rewrites it to match the JD perfectly.
+Paste a job description and your resume to get a job-requirement analysis, candid gap review, and an honest ATS-aware rewrite.
 
-Built for **PromptWars** × **TierBreaker Community** at GKM College of Engineering.
-
----
+Built for **PromptWars × TierBreaker Community** at GKM College of Engineering.
 
 ## Features
+- JD analysis: skills, keywords, soft skills, seniority, and priorities
+- Resume review with evidence-based gaps and a match estimate
+- Resume rewrite that explicitly avoids inventing experience or achievements
+- Three modes: Full Chain, Roast Only, Rewrite Only
+- Streaming output and copy-to-clipboard
+- Responsive, dependency-free frontend
 
-- **JD Analysis** — extracts keywords, skills, and priorities from the job description
-- **Resume Roast** — brutal, specific feedback on what's missing or weak
-- **Smart Rewrite** — ATS-optimized resume rewritten to match the JD
-- **Three modes** — Full chain / Roast only / Rewrite only
-- **Streaming output** — see Claude's response token by token
-- **No backend** — runs entirely in the browser
+## Run locally
+Open `index.html` in a modern browser. For best results, use a local static server (for example, `python -m http.server 8000`) and open `http://localhost:8000`.
 
----
+## Gemini API key and privacy
+1. Create a key in [Google AI Studio](https://aistudio.google.com/apikey).
+2. Paste it into the app.
+3. The key is held in page memory and sent to Google's API in the `x-goog-api-key` request header; it is not saved by this app or placed in the request URL. Clear the field and close the tab when finished.
 
-## Setup
+**Important:** This is a client-side demo. Your browser necessarily uses the API key, so do not use a sensitive, shared, or production key on a public deployment. Restrict the key in Google AI Studio / Google Cloud where supported. Resume text is sent to Google's API for processing. Do not paste information you are not comfortable sharing with that provider.
 
-### Option 1: Open locally
-Just open `index.html` in your browser. No build step, no dependencies.
+## Limits and accuracy
+- Job description and resume inputs are limited to 20,000 characters each.
+- AI output may be incorrect. Verify every claim and never accept invented metrics, credentials, or experience.
+- The rewrite is a drafting aid, not a guarantee of passing an ATS or getting an interview.
 
-### Option 2: Deploy to Render / Vercel / Netlify
-1. Push this folder to a GitHub repo
-2. Connect the repo to Render/Vercel/Netlify
-3. Set publish directory to `/` (root)
-4. Deploy — done
-
-**No environment variables needed.** Users enter their own Anthropic API key in the UI.
-
----
-
-## Getting an API Key
-
-1. Go to [console.anthropic.com](https://console.anthropic.com)
-2. Sign up / log in
-3. Go to **API Keys** → **Create Key**
-4. Copy the key (starts with `sk-ant-...`)
-5. Paste it into the app
-
-> The key is never stored — it stays in memory only while the tab is open.
-
----
-
-## How it works
-
-The app makes direct API calls to Anthropic's `/v1/messages` endpoint with streaming enabled.
-
-**Prompt chain:**
-1. **Analyze** — extract must-have skills and priorities from the JD
-2. **Roast** — compare resume vs JD, identify gaps, score the match
-3. **Rewrite** — generate a new resume with JD keywords injected naturally
-
----
-
-## Stack
-
-- Vanilla HTML, CSS, JavaScript — zero dependencies
-- Anthropic Claude API (`claude-sonnet-4-6`)
-- Server-Sent Events (SSE) for streaming
-
----
-
-## License
-
-MIT — build on it, fork it, remix it.
-
----
-
-*TierBreaker Community · Non-tier-1 college. Tier-1 ambition.*
+## Tests
+Run `npm test` (requires Node.js 18+). Tests cover important client-side security and validation safeguards.

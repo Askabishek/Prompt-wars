@@ -1,0 +1,9 @@
+{
+  "name": "promptwars-resume-roaster",
+  "version": "1.1.0",
+  "private": true,
+  "description": "AI Resume Roaster for PromptWars",
+  "scripts": {
+    "test": "node --test"
+  }
+}
